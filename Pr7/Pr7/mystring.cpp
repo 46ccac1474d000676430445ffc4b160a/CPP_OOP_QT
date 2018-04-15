@@ -132,10 +132,7 @@ String &String::operator+=(const String &s)
 
 char &String::operator[](int index)
 {
-    if (index > m_lenght-1)
-    {
-        throw std::out_of_range("In char &String::operator[](int index) out of range");
-    }
+    if (index > m_lenght-1 || index < 0) throw std::out_of_range("In char &String::operator[](int index) out of range");
     return *(m_charRef+index);
 }
 
