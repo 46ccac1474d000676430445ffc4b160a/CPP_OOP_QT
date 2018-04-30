@@ -10,7 +10,7 @@ int main()
 
     while (!kbhit())
     {
-        t.showTime(0, 0, 3);
+        t.showTime(12, 4, 12, 15);
         Sleep(1000);
         t.inc();
     }

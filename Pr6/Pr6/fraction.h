@@ -67,6 +67,8 @@ public:
     int operator<=(const Fraction &);
     int operator==(const Fraction &);
 
+    void operator()();
+    int operator[](int);
     operator double();
 
     friend Fraction operator+(int, const Fraction &);

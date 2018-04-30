@@ -30,7 +30,7 @@ int TimeClass::get_min()
 
 int TimeClass::get_sec()
 {
-    return seconds % 3600 % 60;
+    return seconds  % 60;
 }
 
 TimeClass& TimeClass::set_hour(int h)

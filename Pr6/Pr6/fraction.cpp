@@ -234,6 +234,22 @@ int Fraction::operator<=(const Fraction &a)
     return ch*a.zn <= a.ch*zn;
 }
 
+void Fraction::operator()()
+{
+    show();
+}
+
+int Fraction::operator[](int index)
+{
+    switch (index)
+    {
+    case 0: return get_cel();
+    case 1: return get_ch();
+    case 2: return get_zn();
+    default: throw std::out_of_range("In int Fraction::operator[](int index) out of range");
+    }
+}
+
 Fraction::operator double()
 {
     return double(ch)/double(zn);

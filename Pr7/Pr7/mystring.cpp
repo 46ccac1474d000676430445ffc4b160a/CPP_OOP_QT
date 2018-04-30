@@ -90,20 +90,20 @@ String String::operator+(const String &s) const
 
 String &String::operator=(const String &s)
 {
-    if (s.m_lenght)
+    if (&s != this)
     {
-        m_lenght = s.m_lenght;
-
-        if (m_charRef != nullptr) delete [] m_charRef;
-        m_charRef = new char[m_lenght+1];
-
-        strcpy(m_charRef, s.m_charRef);
-    }
-    else
-    {
-        m_lenght = 0;
-        if (m_charRef != nullptr)
+        if (s.m_lenght)
         {
+            m_lenght = s.m_lenght;
+
+            delete [] m_charRef;
+            m_charRef = new char[m_lenght+1];
+
+            strcpy(m_charRef, s.m_charRef);
+        }
+        else
+        {
+            m_lenght = 0;
             delete [] m_charRef;
             m_charRef = nullptr;
         }
@@ -123,6 +123,7 @@ String &String::operator+=(const String &s)
         char *tref = ref + m_lenght;
         if (s.m_charRef != nullptr) strcpy(tref, s.m_charRef);
 
+        delete [] m_charRef;
         m_charRef = ref;
         m_lenght = tsize;
     }
@@ -192,6 +193,11 @@ std::istream &operator>>(std::istream &i, String &s)
         written++;
         ch = i.get();
     }
+
+    char *tref = new char[written+1];
+    strcpy(tref, s.m_charRef);
+    delete [] s.m_charRef;
+    s.m_charRef = tref;
 
     return i;
 }
