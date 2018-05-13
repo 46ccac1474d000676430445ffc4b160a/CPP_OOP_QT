@@ -3,12 +3,13 @@
 
 #include <ostream>
 #include <istream>
+#include <cstdlib>
 
 class IntVector
 {
+    int m_size;       //длина массива
     int *m_dataRef;     //указатель на массив
-    int m_length;       //длина массива
-    int m_error;        //код ошибки
+    mutable int m_error;        //код ошибки
     static int count;   //количество созданных объектов типа IntVector
 
 public:
@@ -17,17 +18,17 @@ public:
     IntVector(const IntVector &v);   //Конструктор копирования
     ~IntVector();                   //Деструктор
 
-    int size();
-    int get_error();
+    int size() const;
+    int get_error() const;
     static int get_count();
 
-    int min();
-    int max();
-    double average();
-    int median();
-    double dispersion();
+    int min() const;
+    int max() const;
+    double average() const;
+    int median() const;
+    double dispersion() const;
     double rms();
-    void fill();
+    void fill(int from, int to);
     void sort();
 
     IntVector  operator-();
@@ -48,7 +49,7 @@ public:
     IntVector &operator--();
     IntVector operator--(int);
 
-    int &operator[](int index);
+    int &operator[](int index) const;
 
     void *operator new(size_t size);
     void operator delete (void* addr);

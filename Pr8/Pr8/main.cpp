@@ -6,11 +6,13 @@ using namespace std;
 
 int main()
 {
+    srand(9876);
     IntVector vec(20);
+    vec.fill(-30, 30);
 
     for (int i = 0; i < vec.size(); i++)
     {
-        cout << (vec[i] = rand()%100) << " ";
+        cout << vec[i] << " ";
     }
     cout << endl << endl;
 
