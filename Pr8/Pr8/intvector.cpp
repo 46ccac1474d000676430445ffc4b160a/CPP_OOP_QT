@@ -327,32 +327,46 @@ IntVector &IntVector::operator=(const IntVector &vec)
     return *this;
 }
 
-int IntVector::operator==(const IntVector &) const
+bool IntVector::operator==(const IntVector &vec) const
+{
+    if (size() != vec.size()) return false;
+
+    for (int i = 0; i < size(); i++)
+    {
+        if (m_dataRef[i] != vec[i]) return false;
+    }
+
+    return true;
+}
+
+bool IntVector::operator!=(const IntVector &vec) const
+{
+    if (size() != vec.size()) return true;
+
+    for (int i = 0; i < size(); i++)
+    {
+        if (m_dataRef[i] != vec[i]) return true;
+    }
+
+    return false;
+}
+
+bool IntVector::operator>(const IntVector &) const
 {
 
 }
 
-int IntVector::operator!=(const IntVector &) const
+bool IntVector::operator>=(const IntVector &) const
 {
 
 }
 
-int IntVector::operator>(const IntVector &) const
+bool IntVector::operator<(const IntVector &) const
 {
 
 }
 
-int IntVector::operator>=(const IntVector &) const
-{
-
-}
-
-int IntVector::operator<(const IntVector &) const
-{
-
-}
-
-int IntVector::operator<=(const IntVector &) const
+bool IntVector::operator<=(const IntVector &) const
 {
 
 }

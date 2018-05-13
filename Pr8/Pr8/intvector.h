@@ -55,12 +55,12 @@ public:
     void operator delete (void* addr);
 
     IntVector &operator=(const IntVector &);
-    int operator==(const IntVector &)const;
-    int operator!=(const IntVector &)const;
-    int operator>(const IntVector &)const;
-    int operator>=(const IntVector &)const;
-    int operator<(const IntVector &)const;
-    int operator<=(const IntVector &)const;
+    bool operator==(const IntVector &)const;
+    bool operator!=(const IntVector &)const;
+    bool operator>(const IntVector &)const;
+    bool operator>=(const IntVector &)const;
+    bool operator<(const IntVector &)const;
+    bool operator<=(const IntVector &)const;
 
     friend IntVector operator+(int a, const IntVector &);
     friend IntVector operator-(int a, const IntVector &);
