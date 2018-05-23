@@ -52,8 +52,8 @@ public:
 class GeoRegion
 {
 public:
-    virtual const char *regionName() = 0;
-    virtual const char *regionDescription() = 0;
+    virtual const char *regionName() const = 0;
+    virtual const char *regionDescription() const = 0;
 
 };
 
