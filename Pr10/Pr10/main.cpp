@@ -1,38 +1,44 @@
 #include <iostream>
 #include <cstdlib>
-#include "intvector.h"
+#include <ctime>
 #include <cstring>
 
 using namespace std;
 
+#define homework
+
+#ifndef homework
+
 double divide(double a, double b)
 {
    if (b==0) throw (b);
-         else return a/b;
+   else return a/b;
 }
 
 void get_message(char *message, char sym)
 {
-    while(*message++);
-    message--;
-    *message++=sym;
-    *message='\0';
+    char *m = message;
+    while(*m++);
+    m--;
+    *m++=sym;
+    *m='\0';
 }
 
-// функция проверки наличия символа в строке и возбуждение исключительной ситуации
-int no_symbol(char *str, char symbol)
+ // функция проверки наличия символа в строке и возбуждение исключительной ситуации
+int no_symbol(const char *str, char symbol)
 {
-    for (int i=0;i<strlen(str); i++)
+    for (size_t i=0; i<strlen(str); i++)
         if(str[i] == symbol)
         {
-            char message[80]= "string hasn't consists symbol -";
+            char *message = new char[80];
+            strcpy(message, "string hasn't consists symbol -");
             get_message(message, symbol);
-                        throw  message;
+            throw  message;
         }
     return 1;
 }
 
-//Пример обработки исключительных ситуаций в функции main()
+ //Пример обработки исключительных ситуаций в функции main()
 int main()
 {
     try
@@ -42,31 +48,54 @@ int main()
         no_symbol("Hello my friend",'f');
         no_symbol("September is good time",'t');
     }
-    catch(char *message){ printf("%s\n", message);}
-    catch(double b){ printf("divide by %g\n",b); }
+    catch(char *message)
+    {
+        printf("%s\n", message);
+        delete [] message;
+    }
+    catch(double b)
+    {
+        printf("divide by %g\n",b);
+    }
     return 1;
 }
 
+#endif
 
-//int main()
-//{
-//    srand(9876);
-//    IntVector vec(20);
-//    vec.fill(-30, 30);
 
-//    for (int i = 0; i < vec.size(); i++)
-//    {
-//        cout << vec[i] << " ";
-//    }
-//    cout << endl << endl;
+#ifdef homework
 
-//    vec.sort();
+#include "intvector.h"
 
-//    for (int i = 0; i < vec.size(); i++)
-//    {
-//        cout << vec[i] << " ";
-//    }
-//    cout << endl << endl;
+int main()
+{
+    srand(time(0));
+    IntVector vec(20);
+    vec.fill(-30, 30);
 
-//    return 0;
-//}
+    for (int i = 0; i < vec.size(); i++)
+    {
+        cout << vec[i] << " ";
+    }
+    cout << endl << endl;
+
+    vec.sort();
+
+    try
+    {
+        for (int i = 0; i < vec.size() + 2; i++)
+        {
+
+            cout << vec[i] << " ";
+        }
+    }
+    catch (range_error e)
+    {
+        cout << endl << e.what() << endl;
+    }
+    cout << endl << endl;
+
+    return 0;
+}
+
+#endif

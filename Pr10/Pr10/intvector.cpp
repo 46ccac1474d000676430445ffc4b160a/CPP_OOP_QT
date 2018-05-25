@@ -4,24 +4,21 @@ int IntVector::count = 0;
 
 IntVector::IntVector() :
     m_size(0),
-    m_dataRef(nullptr),
-    m_error(0)
+    m_dataRef(nullptr)
 {
     count++;
 }
 
 IntVector::IntVector(int n) :
     m_size(n),
-    m_dataRef(new int[n]),
-    m_error(0)
+    m_dataRef(new int[n])
 {
     count++;
 }
 
 IntVector::IntVector(const IntVector &v) :
     m_size(v.size()),
-    m_dataRef(new int[v.size()]),
-    m_error(0)
+    m_dataRef(new int[v.size()])
 {
     for (int i = 0; i < size(); i++)
     {
@@ -37,11 +34,6 @@ IntVector::~IntVector()
 inline int IntVector::size() const
 {
     return m_size;
-}
-
-int IntVector::get_error() const
-{
-    return m_error;
 }
 
 int IntVector::get_count()
@@ -144,9 +136,7 @@ IntVector IntVector::operator+(const IntVector &vec) const
     }
     else
     {
-        IntVector t;
-        t.m_error = 4;
-        return t;
+        throw std::length_error("in 'IntVector IntVector::operator+(const IntVector &vec) const' length error");
     }
 }
 
@@ -163,9 +153,7 @@ IntVector IntVector::operator-(const IntVector &vec) const
     }
     else
     {
-        IntVector t;
-        t.m_error = 4;
-        return t;
+        throw std::length_error("in 'IntVector IntVector::operator+(const IntVector &vec) const' length error");
     }
 }
 
@@ -182,9 +170,7 @@ IntVector IntVector::operator*(const IntVector &vec) const
     }
     else
     {
-        IntVector t;
-        t.m_error = 4;
-        return t;
+        throw std::length_error("in 'IntVector IntVector::operator+(const IntVector &vec) const' length error");
     }
 }
 
@@ -201,9 +187,7 @@ IntVector IntVector::operator/(const IntVector &vec) const
     }
     else
     {
-        IntVector t;
-        t.m_error = 4;
-        return t;
+        throw std::length_error("in 'IntVector IntVector::operator+(const IntVector &vec) const' length error");
     }
 }
 
@@ -293,7 +277,7 @@ inline int &IntVector::operator[](int index) const
 {
     if (index > size()-1 || index < 0)
     {
-        m_error = 1;
+        throw std::range_error("in 'inline int &IntVector::operator[](int index) const' out of range");
     }
     else return *(m_dataRef+index);
 }
@@ -351,22 +335,78 @@ bool IntVector::operator!=(const IntVector &vec) const
     return false;
 }
 
-bool IntVector::operator>(const IntVector &) const
+bool IntVector::operator>(const IntVector &vec) const
 {
-
+    for (int i = 0; i < size(); i++)
+    {
+        if (m_dataRef[i] > vec.m_dataRef[i]) return true;
+    }
+    return false;
 }
 
-bool IntVector::operator>=(const IntVector &) const
+bool IntVector::operator>=(const IntVector &vec) const
 {
-
+    for (int i = 0; i < size(); i++)
+    {
+        if (m_dataRef[i] >= vec.m_dataRef[i]) return true;
+    }
+    return false;
 }
 
-bool IntVector::operator<(const IntVector &) const
+bool IntVector::operator<(const IntVector &vec) const
 {
-
+    for (int i = 0; i < size(); i++)
+    {
+        if (m_dataRef[i] < vec.m_dataRef[i]) return true;
+    }
+    return false;
 }
 
-bool IntVector::operator<=(const IntVector &) const
+bool IntVector::operator<=(const IntVector &vec) const
 {
+    for (int i = 0; i < size(); i++)
+    {
+        if (m_dataRef[i] <= vec.m_dataRef[i]) return true;
+    }
+    return false;
+}
 
+IntVector operator+(int a, const IntVector &v)
+{
+    IntVector t(v);
+    for (int i = 0; i < t.size(); i++)
+    {
+        t[i] += a;
+    }
+    return t;
+}
+
+IntVector operator-(int a, const IntVector &v)
+{
+    IntVector t(v);
+    for (int i = 0; i < t.size(); i++)
+    {
+        t[i] -= a;
+    }
+    return t;
+}
+
+IntVector operator*(int a, const IntVector &v)
+{
+    IntVector t(v);
+    for (int i = 0; i < t.size(); i++)
+    {
+        t[i] *= a;
+    }
+    return t;
+}
+
+IntVector operator/(int a, const IntVector &v)
+{
+    IntVector t(v);
+    for (int i = 0; i < t.size(); i++)
+    {
+        t[i] /= a;
+    }
+    return t;
 }

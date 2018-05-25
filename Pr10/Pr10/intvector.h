@@ -4,12 +4,12 @@
 #include <ostream>
 #include <istream>
 #include <cstdlib>
+#include <stdexcept>
 
 class IntVector
 {
     int m_size;       //длина массива
     int *m_dataRef;     //указатель на массив
-    mutable int m_error;        //код ошибки
     static int count;   //количество созданных объектов типа IntVector
 
 public:
@@ -19,7 +19,6 @@ public:
     ~IntVector();                   //Деструктор
 
     int size() const;
-    int get_error() const;
     static int get_count();
 
     int min() const;
