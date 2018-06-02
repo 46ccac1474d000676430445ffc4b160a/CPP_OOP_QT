@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <stdexcept>
+#include <ostream>
 
 template <class T>
 class Array
@@ -67,7 +68,20 @@ public:
     template <typename Tt>
     friend Array<Tt> operator/(Tt a, const Array<Tt> &);
 
+    template <typename Tt>
+    friend std::ostream &operator<<(std::ostream &o, const Array<Tt> &a);
+
 };
+
+template <typename Tt>
+std::ostream &operator<<(std::ostream &o, const Array<Tt> &a)
+{
+    for (int i = 0; i < a.size(); i++)
+    {
+        o << a.m_dataRef[i] << " ";
+    }
+    return o;
+}
 
 template<class T>
 int Array<T>::count = 0;

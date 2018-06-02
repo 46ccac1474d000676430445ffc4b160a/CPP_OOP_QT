@@ -3,7 +3,7 @@
 
 #include "mammal.hpp"
 
-class Predator : public Mammal, GeoRegion
+class Predator : public Mammal, public GeoRegion
 {
 public:
     Predator();

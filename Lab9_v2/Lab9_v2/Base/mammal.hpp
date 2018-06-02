@@ -5,6 +5,7 @@
 
 class Mammal
 {
+protected:
     char m_name[1024];
     char m_description[1024];
     double m_weight;

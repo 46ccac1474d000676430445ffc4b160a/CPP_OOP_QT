@@ -2,8 +2,13 @@
 #define TIMECLASS_H
 
 #include <ctime>
-#include <windows.h>
+#include <cstdlib>
 #include <cstdio>
+
+#ifdef __MINGW32
+#include <windows.h>
+#endif
+
 
 class TimeClass
 {
@@ -18,17 +23,20 @@ public:
     ~TimeClass();			        //Деструктор
 
     //Функции доступа
-    int get_hour();
-    int get_min();
-    int get_sec();
+    int get_hour() const;
+    int get_min() const;
+    int get_sec() const;
 
     TimeClass& set_hour(int);
     TimeClass& set_min(int);
     TimeClass& set_sec(int);
 
+    TimeClass addSeconds(int) const;
+
     TimeClass diffTime(const TimeClass& t);	        //разность между текущим и объектом a.
+#ifdef __MINGW32
     void showTime(int x = 0, int y = 0, int textc = 15, int bgc = 0); //отображения времени в точке
-                                                    // с координатами x и y: 09:15:45
+#endif                                                    // с координатами x и y: 09:15:45
     TimeClass& inc();                              //функция инкремента (увеличение на 1 сек)
 
     //функции сравнения

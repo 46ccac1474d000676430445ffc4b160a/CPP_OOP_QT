@@ -18,17 +18,17 @@ TimeClass::~TimeClass()
 {
 }
 
-int TimeClass::get_hour()
+int TimeClass::get_hour() const
 {
     return seconds / 3600;
 }
 
-int TimeClass::get_min()
+int TimeClass::get_min() const
 {
     return seconds % 3600 / 60;
 }
 
-int TimeClass::get_sec()
+int TimeClass::get_sec() const
 {
     return seconds  % 60;
 }
@@ -51,11 +51,19 @@ TimeClass& TimeClass::set_sec(int s)
     return *this;
 }
 
+TimeClass TimeClass::addSeconds(int sec) const
+{
+    TimeClass time = *this;
+    time.seconds = (time.seconds + sec) % 86400;
+    return time;
+}
+
 TimeClass TimeClass::diffTime(const TimeClass& t)
 {
     return TimeClass(0, 0, abs(seconds - t.seconds) );
 }
 
+#ifdef __MINGW32
 void TimeClass::showTime(int x, int y, int textc, int bgc)
 {
     HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -69,6 +77,7 @@ void TimeClass::showTime(int x, int y, int textc, int bgc)
 
     printf("%02d:%02d:%02d", get_hour(), get_min(), get_sec());
 }
+#endif
 
 TimeClass& TimeClass::inc()
 {
