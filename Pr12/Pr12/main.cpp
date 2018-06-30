@@ -9,13 +9,13 @@ using namespace std;
 
 void task9()
 {
-    cout << "Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ 9" << endl << endl;
+    cout << "Çàäàíèå 9" << endl << endl;
 
     Section A, B;
 
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐµÐºÑ†Ð¸ÑŽ A (4 Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ)" << endl;
+    cout << "Ââåäèòå ñåêöèþ A (4 çíà÷åíèÿ)" << endl;
     cin >> A;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐµÐºÑ†Ð¸ÑŽ B (4 Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ)" << endl;
+    cout << "Ââåäèòå ñåêöèþ B (4 çíà÷åíèÿ)" << endl;
     cin >> B;
 
     cout << endl;
@@ -23,39 +23,39 @@ void task9()
     int result = 0;
     string notice;
 
-    if (A.rightAnswers() + B.rightAnswers() > 5) notice += "Ð‘Ð¾Ð»ÑŒÑˆÐµ Ñ‡ÐµÐ¼ 5.";
+    if (A.rightAnswers() + B.rightAnswers() > 5) notice += "Áîëüøå ÷åì 5.";
 
     if (A.rightAnswers() > 2)
     {
         result += A.summOf(3);
-        if (B.rightAnswers() < 2) notice += "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¸Ð· B";
+        if (B.rightAnswers() < 2) notice += "Íåäîñòàòî÷íî èç B";
 
         result += B.summOf(2);
     }
     else
     {
         result += A.summOf(2);
-        if (B.rightAnswers() < 3) notice += "ÐÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¸Ð· A";
+        if (B.rightAnswers() < 3) notice += "Íåäîñòàòî÷íî èç A";
 
         result += B.summOf(3);
     }
 
-    cout << "Ð¡ÐµÐºÑ†Ð¸Ñ A: " << A << endl
-         << "Ð¡ÐµÐºÑ†Ð¸Ñ B: " << B << endl
-         << "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: " << result << endl
-         << "ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ: " << notice << endl;
+    cout << "Ñåêöèÿ A: " << A << endl
+         << "Ñåêöèÿ B: " << B << endl
+         << "Ðåçóëüòàò: " << result << endl
+         << "Ïðèìå÷àíèå: " << notice << endl;
 }
 
 void task19()
 {
-    cout << "Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ 19" << endl << endl;
+    cout << "Çàäàíèå 19" << endl << endl;
 
     Train trains[25];
 
     for (int i = 0; i < 25; i++)
     {
         trains[i].setNumber( 2485+i );
-        trains[i].setDirection("Ð˜Ð·ÐÐ¸ÐžÑ‚ÐºÑƒÐ´Ð°-Ð²-ÐÐ¸ÐšÑƒÐ´Ð°");
+        trains[i].setDirection("ÈçÍèÎòêóäà-â-ÍèÊóäà");
 
         TimeClass arrival(rand()%24, rand()%60, 0);
 
@@ -67,10 +67,10 @@ void task19()
 
     while(true)
     {
-        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ€ÐµÐ¼Ñ [Ñ‡Ð°Ñ Ð¼Ð¸Ð½ÑƒÑ‚Ð°] << ";
+        cout << "Ââåäèòå âðåìÿ [÷àñ ìèíóòà] << ";
         cin >> hour >> min;
 
-        cout << "ÐŸÐ¾ÐµÐ·Ð´Ð° Ð½Ð° ÑÑ‚Ð°Ð½Ñ†Ð¸Ð¸:" << endl;
+        cout << "Ïîåçäà íà ñòàíöèè:" << endl;
 
         for (int i = 0; i < 25; i++)
         {
@@ -78,7 +78,7 @@ void task19()
                 cout << trains[i] << endl;
         }
 
-        cout << endl << "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð¸ÑÐº? y/n ... ";
+        cout << endl << "Ïîâòîðèòü ïîèñê? y/n ... ";
         char ex;
         cin >> ex;
         if (ex == 'n') break;
@@ -87,11 +87,12 @@ void task19()
     cout << endl;
 }
 
-//#define TASK9
-#define TASK19
+#define TASK9
+//#define TASK19
 
 int main()
 {
+    std::setlocale(LC_ALL, "rus");
     srand(time(0));
 
 #ifdef TASK9

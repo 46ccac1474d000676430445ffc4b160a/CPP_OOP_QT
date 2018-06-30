@@ -63,7 +63,7 @@ TimeClass TimeClass::diffTime(const TimeClass& t)
     return TimeClass(0, 0, abs(seconds - t.seconds) );
 }
 
-#ifdef __MINGW32
+#ifdef __MINGW32__
 void TimeClass::showTime(int x, int y, int textc, int bgc)
 {
     HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);

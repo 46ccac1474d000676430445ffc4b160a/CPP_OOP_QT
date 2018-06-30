@@ -58,5 +58,5 @@ ostream &operator<<(ostream &o, const Train &train)
              << train.m_number << ", "
              << train.m_direction << ", "
              << train.m_arrival.get_hour() << ":" << train.m_arrival.get_min() << ", "
-             << train.m_departure.get_hour() << ":" << train.m_arrival.get_min() << "]";
+             << train.m_departure.get_hour() << ":" << train.m_departure.get_min() << "]";
 }

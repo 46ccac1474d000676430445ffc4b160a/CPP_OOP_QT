@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#ifdef __MINGW32
+#ifdef __MINGW32__
 #include <windows.h>
 #endif
 
@@ -34,7 +34,7 @@ public:
     TimeClass addSeconds(int) const;
 
     TimeClass diffTime(const TimeClass& t);	        //разность между текущим и объектом a.
-#ifdef __MINGW32
+#ifdef __MINGW32__
     void showTime(int x = 0, int y = 0, int textc = 15, int bgc = 0); //отображения времени в точке
 #endif                                                    // с координатами x и y: 09:15:45
     TimeClass& inc();                              //функция инкремента (увеличение на 1 сек)
